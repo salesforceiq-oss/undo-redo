@@ -11,9 +11,9 @@ export class UndoRedo {
         this._redoStack = [];
     }
 
-    public make(element) {
+    public make(element, preventKeys) {
         element.addEventListener('keydown', function(event: KeyboardEvent) {
-            if (provider.preventKeys) {
+            if (preventKeys) {
                 event.preventDefault();
                 event.stopPropagation();
             }
