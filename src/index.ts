@@ -31,7 +31,7 @@ export class UndoRedo {
     public doUndo() {
         if (!!this._undoStack.length) {
             const undoObj = this._undoStack.pop();
-            if (undoObj.undo()) {
+            if (undoObj.undo && undoObj.undo()) {
                this._redoStack.push(undoObj);
             }
         }
