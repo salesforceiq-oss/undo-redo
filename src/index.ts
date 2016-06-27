@@ -4,28 +4,12 @@ export class UndoRedo {
 
     private _undoStack: any[];
     private _redoStack: any[];
-    private _Z_KEY = 90;
+    private _Z_KEY: number;
 
     constructor() {
         this._undoStack = [];
         this._redoStack = [];
-    }
-
-    public make(element, preventKeys) {
-        element.addEventListener('keydown', function(event: KeyboardEvent) {
-            if (preventKeys) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            const key = event.keyCode || event.which;
-            if (key === this._Z_KEY && (window.navigator.userAgent.match(/win/i) ? event.ctrlKey : event.metaKey)) {
-                if (event.shiftKey) {
-                    this.doRedo();
-                } else {
-                    this.doUndo();
-                }
-            }
-        });
+        this._Z_KEY = 90;
     }
 
     public doUndo() {
@@ -44,6 +28,24 @@ export class UndoRedo {
                 this._undoStack.push(undoObj);
             }
         }
+    }
+
+    public make(element: Element, preventKeys: boolean): void {
+        element.addEventListener('keydown', function(event: KeyboardEvent) {
+            if (preventKeys) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const key = event.keyCode || event.which;
+            console.log(this._Z_KEY);
+            if (key === this._Z_KEY && (window.navigator.userAgent.match(/win/i) ? event.ctrlKey : event.metaKey)) {
+                if (event.shiftKey) {
+                    this.doRedo();
+                } else {
+                    this.doUndo();
+                }
+            }
+        }.bind(this));
     }
 
     public addUndoObject(object: any) {

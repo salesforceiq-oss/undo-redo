@@ -113,3 +113,19 @@ test(`calls doUndo() 4 times and doRedo() 3 times`, t => {
     t.end();
 });
 
+test(`calls doUndo() and doRedo() 0 times since function added is called`, t => {
+    const ur = new UndoRedo();
+    const countObj = {
+        undoCount: 0,
+        redoCount: 0
+    }
+    const obj = createObject(countObj);
+    let func = ur.addUndoObject(obj);
+    func();
+    undo(ur);
+    redo(ur);
+    t.equal(countObj.undoCount, 0);
+    t.equal(countObj.redoCount, 0);
+    t.end();
+});
+
