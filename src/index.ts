@@ -65,7 +65,7 @@ export class UndoRedo {
         }
     }
 
-    private _clear() {
+    public clear() {
         this._undoStack = [];
         this._redoStack = [];
     }

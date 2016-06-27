@@ -2,11 +2,11 @@
 declare var require: NodeRequire;
 
 import test = require('tape');
-import { UndoRedo } from './';
+import undoRedoStack from './';
 
 interface countObj {
-    undoCount: number,
-    redoCount: number
+    undoCount: number;
+    redoCount: number;
 }
 
 function createObject(object: countObj) {
@@ -19,7 +19,7 @@ function createObject(object: countObj) {
             object.redoCount++;
             return true;
         }
-    }
+    };
     return obj;
 }
 
@@ -41,12 +41,12 @@ function addUndo(undoRedo: UndoRedo, obj: Object, numTimes: number = 1) {
     }
 }
 
-test(`calls both doUndo() and doRedo() 1 time`, t => {
-    const ur = new UndoRedo();
+test(`should call both doUndo() and doRedo() 1 time`, t => {
+    const ur = undoRedoStack.clear();
     const countObj = {
         undoCount: 0,
         redoCount: 0
-    }
+    };
     addUndo(ur, createObject(countObj));
     undo(ur);
     redo(ur);
@@ -55,12 +55,12 @@ test(`calls both doUndo() and doRedo() 1 time`, t => {
     t.end();
 });
 
-test(`calls doUndo() 3 times and doRedo() 1 time`, t => {
-    const ur = new UndoRedo();
+test(`should call doUndo() 3 times and doRedo() 1 time`, t => {
+    const ur = undoRedoStack.clear();
     const countObj = {
         undoCount: 0,
         redoCount: 0
-    }
+    };
     const obj = createObject(countObj);
     addUndo(ur, obj, 3);
     undo(ur, 3);
@@ -70,12 +70,12 @@ test(`calls doUndo() 3 times and doRedo() 1 time`, t => {
     t.end();
 });
 
-test(`successfully calls doUndo() 3 times even though it is called 4 times`, t => {
-    const ur = new UndoRedo();
+test(`should successfully call doUndo() 3 times even though it is called 4 times`, t => {
+    const ur = undoRedoStack.clear();
     const countObj = {
         undoCount: 0,
         redoCount: 0
-    }
+    };
     const obj = createObject(countObj);
     addUndo(ur, obj, 3);
     undo(ur, 4);
@@ -83,12 +83,12 @@ test(`successfully calls doUndo() 3 times even though it is called 4 times`, t =
     t.end();
 });
 
-test(`nothing gets called because nothing added to stacks at the start`, t => {
-    const ur = new UndoRedo();
+test(`should call doUndo() and doRedo() 0 times because nothing added to stacks at the start`, t => {
+    const ur = undoRedoStack.clear();
     const countObj = {
         undoCount: 0,
         redoCount: 0
-    }
+    };
     undo(ur, 4);
     redo(ur, 2);
     t.equal(countObj.undoCount, 0);
@@ -96,12 +96,12 @@ test(`nothing gets called because nothing added to stacks at the start`, t => {
     t.end();
 });
 
-test(`calls doUndo() 4 times and doRedo() 3 times`, t => {
-    const ur = new UndoRedo();
+test(`should call doUndo() 4 times and doRedo() 3 times`, t => {
+    const ur = undoRedoStack.clear();
     const countObj = {
         undoCount: 0,
         redoCount: 0
-    }
+    };
     const obj = createObject(countObj);
     addUndo(ur, obj, 3);
     undo(ur);
@@ -113,12 +113,12 @@ test(`calls doUndo() 4 times and doRedo() 3 times`, t => {
     t.end();
 });
 
-test(`calls doUndo() and doRedo() 0 times since function added is called`, t => {
-    const ur = new UndoRedo();
+test(`should call doUndo() and doRedo() 0 times since function added is called first`, t => {
+    const ur = undoRedoStack.clear();
     const countObj = {
         undoCount: 0,
         redoCount: 0
-    }
+    };
     const obj = createObject(countObj);
     let func = ur.addUndoObject(obj);
     func();
