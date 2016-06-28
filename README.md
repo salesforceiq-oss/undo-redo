@@ -6,8 +6,8 @@ Undo-Redo is a simple library that allows you to customize the behavior of the s
 ## How does it work?
 Setup an environment for your undo-redo stack with the make() function 
 
-**ts**
-```typescript
+**js**
+```javascript
 undoRedoStack.make(document.body, true);
 ```
 
@@ -17,11 +17,11 @@ Create an element that has undo and redo attributes that specify what happens wh
 ```typescript
 //an example object
 const obj = {
-    undo: () => {
+    undo: function() {
         document.body.removeChild(elem);
         return true;
     },
-    redo: () => {
+    redo: function() {
         document.body.appendChild(elem);
         return true;
     }
@@ -30,8 +30,8 @@ const obj = {
 
 Add this element to your undo-redo stack with the addUndoObject() function
 
-**ts**
-```typescript
+**js**
+```javascript
 undoRedoStack.addUndoObject(object);
 ```
 

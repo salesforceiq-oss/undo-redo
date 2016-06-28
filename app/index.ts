@@ -8,6 +8,7 @@ document.body.addEventListener('click', function(e) {
     if ((<Element>e.target).getAttribute('id') === 'newElBtn') {
         let el = document.createElement('div');
         el.setAttribute('class', 'zElement');
+        el.setAttribute('style', 'background-color: '+getRandomColor()+';');
         document.body.appendChild(el);
 
         let object ={
@@ -23,3 +24,12 @@ document.body.addEventListener('click', function(e) {
         undoRedoStack.addUndoObject(object);
     }
 });
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
