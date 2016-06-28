@@ -13,8 +13,8 @@ undoRedoStack.make(document.body, true);
 
 Create an element that has undo and redo attributes that specify what happens when `Cmd+Z` and `Cmd+Shift+Z` are pressed.
 
-**ts**
-```typescript
+**js**
+```javascript
 //an example object
 const obj = {
     undo: function() {
