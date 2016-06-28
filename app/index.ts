@@ -11,11 +11,11 @@ document.body.addEventListener('click', function(e) {
         document.body.appendChild(el);
 
         let object ={
-            undo: function() {
+            undo: () => {
                 document.body.removeChild(el);
                 return true;
             },
-            redo: function() {
+            redo: () => {
                 document.body.appendChild(el);
                 return true;
             }

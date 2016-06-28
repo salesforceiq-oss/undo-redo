@@ -48,7 +48,7 @@ export class UndoRedo {
         }.bind(this));
     }
 
-    public addUndoObject(object: any) {
+    public addUndoObject(object: any): Function {
         this._redoStack = [];
         this._undoStack.push(object);
         return () => this._removeUndoObject(object);
