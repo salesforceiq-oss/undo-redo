@@ -16,7 +16,7 @@ Create an element that has undo and redo attributes that specify what happens wh
 **js**
 ```javascript
 //an example object
-const obj = {
+var obj = {
     undo: function() {
         document.body.removeChild(elem);
         return true;
