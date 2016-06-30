@@ -1,6 +1,6 @@
 ///<reference path="../typings/index.d.ts" />
 
-export class UndoRedo {
+export default class UndoRedo {
 
     private _undoStack: any[];
     private _redoStack: any[];
@@ -70,5 +70,3 @@ export class UndoRedo {
         this._redoStack = [];
     }
 }
-
-export default new UndoRedo();

@@ -2,8 +2,7 @@
 declare var require: NodeRequire;
 
 import test = require('tape');
-import undoRedoStack from './';
-import { UndoRedo } from './'
+import UndoRedo from './'
 
 interface CountObj {
     undoCount: number;
@@ -43,7 +42,7 @@ function addUndo(undoRedo: UndoRedo, obj: Object, numTimes: number = 1) {
 }
 
 test(`should call both doUndo() and doRedo() 1 time`, t => {
-    undoRedoStack.clear();
+    const undoRedoStack = new UndoRedo();
     const countObj = {
         undoCount: 0,
         redoCount: 0
@@ -57,7 +56,7 @@ test(`should call both doUndo() and doRedo() 1 time`, t => {
 });
 
 test(`should call doUndo() 3 times and doRedo() 1 time`, t => {
-    undoRedoStack.clear();
+    const undoRedoStack = new UndoRedo();
     const countObj = {
         undoCount: 0,
         redoCount: 0
@@ -72,7 +71,7 @@ test(`should call doUndo() 3 times and doRedo() 1 time`, t => {
 });
 
 test(`should successfully call doUndo() 3 times even though it is called 4 times`, t => {
-    undoRedoStack.clear();
+    const undoRedoStack = new UndoRedo();
     const countObj = {
         undoCount: 0,
         redoCount: 0
@@ -85,7 +84,7 @@ test(`should successfully call doUndo() 3 times even though it is called 4 times
 });
 
 test(`should call doUndo() and doRedo() 0 times because nothing added to stacks at the start`, t => {
-    undoRedoStack.clear();
+    const undoRedoStack = new UndoRedo();
     const countObj = {
         undoCount: 0,
         redoCount: 0
@@ -98,7 +97,7 @@ test(`should call doUndo() and doRedo() 0 times because nothing added to stacks 
 });
 
 test(`should call doUndo() 4 times and doRedo() 3 times`, t => {
-    undoRedoStack.clear();
+    const undoRedoStack = new UndoRedo();
     const countObj = {
         undoCount: 0,
         redoCount: 0
@@ -115,7 +114,7 @@ test(`should call doUndo() 4 times and doRedo() 3 times`, t => {
 });
 
 test(`should call doUndo() and doRedo() 0 times since function added is called first`, t => {
-    undoRedoStack.clear();
+    const undoRedoStack = new UndoRedo();
     const countObj = {
         undoCount: 0,
         redoCount: 0
