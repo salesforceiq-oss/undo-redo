@@ -1,7 +1,7 @@
 ///<reference path="../typings/index.d.ts" />
-declare var require: NodeRequire;
+import UndoRedo from '../.src';
 
-let undoRedoStack = require('../.src').default;
+let undoRedoStack = new UndoRedo();
 undoRedoStack.make(document.body, true);
 
 document.body.addEventListener('click', function(e) {
@@ -11,7 +11,7 @@ document.body.addEventListener('click', function(e) {
         el.setAttribute('style', 'background-color: '+getRandomColor()+';');
         document.body.appendChild(el);
 
-        let object ={
+        let object = {
             undo: () => {
                 document.body.removeChild(el);
                 return true;
