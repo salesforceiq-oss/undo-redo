@@ -1,6 +1,6 @@
 {
   "name": "undo-redo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple undo-redo library.",
   "main": ".src/index.js",
   "author": "webdevs@salesforceiq.com",
