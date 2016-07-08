@@ -15,7 +15,7 @@ export default class UndoRedo {
     public doUndo() {
         if (!!this._undoStack.length) {
             const undoObj = this._undoStack.pop();
-            if (undoObj.undo && undoObj.undo()) {
+            if (undoObj.undo && undoObj.undo() !== false) {
                this._redoStack.push(undoObj);
             }
         }
@@ -24,7 +24,7 @@ export default class UndoRedo {
     public doRedo() {
         if (!!this._redoStack.length) {
             const undoObj = this._redoStack.pop();
-            if (undoObj.redo && undoObj.redo()) {
+            if (undoObj.redo && undoObj.redo() !== false) {
                 this._undoStack.push(undoObj);
             }
         }
