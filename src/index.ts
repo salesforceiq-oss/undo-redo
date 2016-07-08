@@ -37,7 +37,6 @@ export default class UndoRedo {
                 event.stopPropagation();
             }
             const key = event.keyCode || event.which;
-            console.log(this._Z_KEY);
             if (key === this._Z_KEY && (window.navigator.userAgent.match(/win/i) ? event.ctrlKey : event.metaKey)) {
                 if (event.shiftKey) {
                     this.doRedo();
